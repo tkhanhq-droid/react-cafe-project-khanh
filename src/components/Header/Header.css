@@ -1,17 +1,22 @@
-.top {
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgb(73, 139, 170);
+.pill {
+  background-color: rgb(196, 255, 255);
+  color: rgb(32, 99, 175);
+  border-radius: 15px;
+  padding: 5px;
 }
-.lead {
-  color: rgb(100, 98, 98);
-  font-size: 17px;
+.logo {
+  margin: 10px;
+}
+.app-head p {
+  color: rgb(151, 149, 149);
   margin: 0;
 }
-.wrap {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 32px 16px 80px;
+.app-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nameCafe {
+  display: flex;
+  align-items: baseline;
 }
