@@ -1,16 +1,12 @@
 import "./Header.css";
-export default function Header() {
+export default function Header({ cartCount }) {
   return (
-    <div className="wrap">
-      <header>
-        <div className="top">REACT PRATICE PROJECT</div>
-        <h1>Bean & Leaf - Café Ordering App</h1>
-        <p className="lead">
-          Build a small café ordering app in React. You must use props,
-          conditional rendering, list rendering, events, state, snapshots,
-          queued updates, and immutable object and array updates.
-        </p>
-      </header>
-    </div>
+    <header className="app-head">
+      <div className="nameCafe">
+        <h1 className="logo">☕ Bean & Leaf</h1>
+        <p>order ahead, skip the line</p>
+      </div>
+      <div className="pill">🛒 Cart ({cartCount})</div>
+    </header>
   );
 }
