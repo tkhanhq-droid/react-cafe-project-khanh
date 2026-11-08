@@ -1,0 +1,75 @@
+.menu-card {
+  background-color: white;
+  border: 1px solid rgb(189, 185, 185);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+.item-emoji {
+  font-size: 36px;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+.item-emoji.coffee {
+  background-color: #f4e3d4;
+}
+
+.item-emoji.tea {
+  background-color: #e3f2dc;
+}
+
+.item-emoji.bakery {
+  background-color: #fff0ce;
+}
+.item-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.item-info {
+  font-size: 14px;
+  color: #6b7280;
+}
+.badge-popular {
+  background-color: #fef3c7;
+  color: #92400e;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.badge-soldOut {
+  background-color: #ecc7cc;
+  color: #e02222;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.details {
+  font-size: 14px;
+  color: #6b7280;
+}
+.btn-add {
+  background-color: rgb(53, 124, 206);
+  border-radius: 10px;
+  border: 1px solid white;
+  cursor: pointer;
+  padding: 8px 14px;
+  color: white;
+  font-weight: 600;
+}
+.btn-quickAdd {
+  background-color: #e1e3e7;
+  border-radius: 10px;
+  border: 1px solid white;
+  cursor: pointer;
+  padding: 8px 14px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.btn-add:disabled,
+.btn-quickAdd:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
