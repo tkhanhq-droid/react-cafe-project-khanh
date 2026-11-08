@@ -10,6 +10,7 @@
   border-radius: 10px;
   padding: 20px;
   text-align: center;
+  position: relative;
 }
 .item-emoji.coffee {
   background-color: #f4e3d4;
@@ -45,6 +46,12 @@
   padding: 4px 8px;
   border-radius: 12px;
   font-size: 12px;
+}
+.badge-popular,
+.badge-soldOut {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 .details {
   font-size: 14px;

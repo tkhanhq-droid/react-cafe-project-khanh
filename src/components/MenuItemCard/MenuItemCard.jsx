@@ -6,10 +6,10 @@ export default function MenuItemCard({ item, onAddToCart, onQuickAdd }) {
     <div className="menu-card" onClick={() => setShowDetails((prev) => !prev)}>
       <div className={`item-emoji ${item.category.toLowerCase()}`}>
         {item.emoji}
+        {item.popular && <span className="badge-popular"> Popular </span>}
+        {item.soldOut && <span className="badge-soldOut"> Sold Out </span>}
       </div>
       <h4 className="item-name">{item.name}</h4>
-      {item.popular && <span className="badge-popular"> Popular </span>}
-      {item.soldOut && <span className="badge-soldOut"> Sold Out </span>}
       <p className="item-info">
         ${item.price.toFixed(2)} · {item.category}
       </p>
