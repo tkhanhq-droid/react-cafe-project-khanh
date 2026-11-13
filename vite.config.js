@@ -6,4 +6,10 @@ export default defineConfig({
   plugins: [react()],
   // GitHub Pages serves the site at https://<owner>.github.io/<repo>/
   base: '/react-cafe-project-khanh/',
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/test/setup.js',
+    css: false,
+  },
 })
