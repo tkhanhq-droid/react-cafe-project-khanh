@@ -13,23 +13,70 @@ import { useState } from "react";
 
 export default function App() {
   const categories = ["All", "Coffee", "Tea", "Bakery"];
+
   const [category, setCategory] = useState("All");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("default");
   const [cart, setCart] = useState([]);
 
-  const filteredItems = Menu.filter((item) =>
-    category === "All" ? true : item.category === category,
-  );
+  const [customer, setCustomer] = useState({
+    name: "",
+    phone: "",
+    note: "",
+    address: {
+      street: "",
+      city: "",
+    },
+  });
 
+  const [coupon, setCoupon] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [orders, setOrders] = useState([]);
+  const [lastOrder, setLastOrder] = useState(null);
+  const [showErrors, setShowErrors] = useState(false);
+
+  // Lọc theo danh mục và tìm kiếm
+  const filteredItems = Menu.filter((item) => {
+    const matchCategory = category === "All" || item.category === category;
+
+    const matchSearch = item.name
+      .toLowerCase()
+      .includes(search.trim().toLowerCase());
+
+    return matchCategory && matchSearch;
+  });
+
+  // Sắp xếp theo giá
+  const sortedItems = [...filteredItems];
+
+  if (sort === "low") {
+    sortedItems.sort((a, b) => a.price - b.price);
+  } else if (sort === "high") {
+    sortedItems.sort((a, b) => b.price - a.price);
+  }
+
+  // Tính số lượng và tổng tiền
   const cartCount = cart.reduce(
     (total, product) => total + product.quantity,
     0,
   );
 
+  const subtotal = cart.reduce(
+    (sum, product) => sum + product.price * product.quantity,
+    0,
+  );
+
+  const validCoupon = coupon.trim().toUpperCase() === "REACT10";
+
+  const discount = validCoupon ? subtotal * 0.1 : 0;
+
+  const total = subtotal - discount;
+
+  // Thêm sản phẩm vào giỏ
   function handleAddToCart(item) {
     setCart((prevCart) => {
       const exists = prevCart.some((product) => product.id === item.id);
+
       if (exists) {
         const updateCart = prevCart.map((product) =>
           product.id === item.id
@@ -66,15 +113,108 @@ export default function App() {
           ? { ...product, quantity: product.quantity - 1 }
           : product,
       );
+
       const remainingCart = updateQuantity.filter(
         (product) => product.quantity > 0,
       );
+
       return remainingCart;
     });
   }
 
   function handleClear() {
     setCart([]);
+  }
+
+  // Cập nhật thông tin khách hàng
+  function handleCustomerChange(field, value) {
+    setCustomer((prevCustomer) => ({
+      ...prevCustomer,
+      [field]: value,
+    }));
+  }
+
+  // Cập nhật địa chỉ
+  function handleAddressChange(field, value) {
+    setCustomer((prevCustomer) => ({
+      ...prevCustomer,
+      address: {
+        ...prevCustomer.address,
+        [field]: value,
+      },
+    }));
+  }
+
+  // Kiểm tra thông tin đặt hàng
+  const errors = {};
+
+  if (!customer.name.trim()) {
+    errors.name = "Name is required";
+  }
+
+  if (!/^\d{9,11}$/.test(customer.phone.trim())) {
+    errors.phone = "Phone must be 9-11 digits";
+  }
+
+  if (!customer.address.street.trim()) {
+    errors.street = "Street is required";
+  }
+
+  if (!customer.address.city.trim()) {
+    errors.city = "City is required";
+  }
+
+  // Xử lý đặt hàng
+  function handleSubmit(e) {
+    e.preventDefault();
+    setShowErrors(true);
+
+    if (status !== "idle" || cart.length === 0) {
+      return;
+    }
+
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
+    // Lưu dữ liệu tại thời điểm nhấn Place Order
+    const newOrder = {
+      id: orders.length + 1,
+      customer: {
+        ...customer,
+        address: { ...customer.address },
+      },
+      items: cart.map((item) => ({ ...item })),
+      total: total,
+      time: new Date().toLocaleTimeString(),
+    };
+
+    setStatus("sending");
+
+    setTimeout(() => {
+      setOrders((prevOrders) => [newOrder, ...prevOrders]);
+      setLastOrder(newOrder);
+      setCart([]);
+      setStatus("done");
+    }, 2000);
+  }
+
+  // Bắt đầu đơn hàng mới
+  function handleNewOrder() {
+    setCustomer({
+      name: "",
+      phone: "",
+      note: "",
+      address: {
+        street: "",
+        city: "",
+      },
+    });
+
+    setCoupon("");
+    setLastOrder(null);
+    setShowErrors(false);
+    setStatus("idle");
   }
 
   return (
@@ -92,11 +232,17 @@ export default function App() {
       />
 
       <div className="main-layout">
-        <MenuList
-          items={filteredItems}
-          onAddToCart={handleAddToCart}
-          onQuickAdd={handleQuickAdd}
-        />
+        <div>
+          {sortedItems.length === 0 ? (
+            <p>No drinks match your search</p>
+          ) : (
+            <MenuList
+              items={sortedItems}
+              onAddToCart={handleAddToCart}
+              onQuickAdd={handleQuickAdd}
+            />
+          )}
+        </div>
 
         <div className="right-panel">
           <Panel title="Your Cart">
@@ -109,29 +255,41 @@ export default function App() {
           </Panel>
 
           <Panel title="Order Summary">
-            <OrderSummary subtotal={0} discount={0} total={0} />
+            {cart.length > 0 ? (
+              <OrderSummary
+                subtotal={subtotal}
+                discount={discount}
+                total={total}
+              />
+            ) : (
+              <p>Your cart is empty.</p>
+            )}
           </Panel>
 
           <Panel title="Checkout">
-            <CheckoutForm
-              customer={{ name: "", phone: "", address: "" }}
-              coupon=""
-              status="idle"
-              onCustomerChange={() => {}}
-              onAddressChange={() => {}}
-              onCouponChange={() => {}}
-              onSubmit={(e) => e.preventDefault()}
-            />
+            {status === "idle" && (
+              <CheckoutForm
+                customer={customer}
+                coupon={coupon}
+                status={status}
+                errors={showErrors ? errors : {}}
+                canSubmit={cart.length > 0}
+                onCustomerChange={handleCustomerChange}
+                onAddressChange={handleAddressChange}
+                onCouponChange={setCoupon}
+                onSubmit={handleSubmit}
+              />
+            )}
+
+            {status === "sending" && <p>Placing your order...</p>}
+
+            {status === "done" && lastOrder && (
+              <SuccessMessage order={lastOrder} onNewOrder={handleNewOrder} />
+            )}
           </Panel>
 
-          {false && (
-            <Panel title="Success Message">
-              <SuccessMessage />
-            </Panel>
-          )}
-
           <Panel title="Order History">
-            <OrderHistory orders={[]} />
+            <OrderHistory orders={orders} />
           </Panel>
         </div>
       </div>

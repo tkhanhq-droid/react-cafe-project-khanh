@@ -1,8 +1,8 @@
 import "./OrderHistory.css";
+
 export default function OrderHistory({ orders }) {
   return (
     <div className="order-history">
-      <h3>Order History</h3>
       {orders.length === 0 ? (
         <p>No orders yet.</p>
       ) : (
@@ -11,8 +11,7 @@ export default function OrderHistory({ orders }) {
             <p>
               #{order.id} · {order.customer.name} ·{" "}
               {order.items.reduce((sum, item) => sum + item.quantity, 0)}{" "}
-              item(s)
-              {" · "}${order.total.toFixed(2)}
+              item(s) · ${order.total.toFixed(2)} · {order.time}
             </p>
           </div>
         ))
