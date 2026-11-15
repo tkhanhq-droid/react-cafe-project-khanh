@@ -1,0 +1,25 @@
+.success-message {
+  padding: 0.75rem;
+  border: 0.0625rem solid #bbf7d0;
+  border-radius: 0.625rem;
+  background-color: #f0fdf4;
+}
+
+.success-message h3 {
+  margin: 0 0 0.75rem;
+  color: #166534;
+}
+
+.success-message p {
+  margin: 0.5rem 0;
+}
+
+.success-message button {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 0;
+  border-radius: 0.625rem;
+  background-color: #357cce;
+  color: white;
+  cursor: pointer;
+}

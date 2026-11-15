@@ -1,0 +1,35 @@
+.cart-line {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  border-bottom: 0.0625rem solid #e5e7eb;
+}
+
+.cart-line h4,
+.cart-line p {
+  margin: 0;
+}
+
+.cart-line h4 {
+  font-size: 1rem;
+}
+
+.cart-line p {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.cart-line button {
+  padding: 0.35rem 0.7rem;
+  border: 0.0625rem solid #bdb9b9;
+  border-radius: 0.5rem;
+  background-color: #f3f4f6;
+  cursor: pointer;
+}
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}

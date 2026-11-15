@@ -1,0 +1,36 @@
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.checkout-form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 0.0625rem solid #bdb9b9;
+  border-radius: 0.625rem;
+  background-color: white;
+}
+
+.checkout-form button {
+  padding: 0.75rem;
+  border: 0;
+  border-radius: 0.625rem;
+  background-color: #357cce;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkout-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

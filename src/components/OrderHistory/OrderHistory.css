@@ -1,0 +1,21 @@
+.order-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.order-history h3 {
+  margin: 0;
+}
+
+.history-item {
+  padding: 0.75rem;
+  border: 0.0625rem solid #e5e7eb;
+  border-radius: 0.625rem;
+  background-color: #f9fafb;
+}
+
+.history-item p {
+  margin: 0;
+  font-size: 0.875rem;
+}

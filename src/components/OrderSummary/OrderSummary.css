@@ -1,0 +1,27 @@
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.summary-row p,
+.summary-row h4 {
+  margin: 0;
+}
+
+.summary-row p {
+  color: #6b7280;
+}
+
+.total-row {
+  padding-top: 0.75rem;
+  border-top: 0.0625rem solid #e5e7eb;
+  font-weight: 600;
+}

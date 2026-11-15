@@ -1,0 +1,15 @@
+.panel {
+  padding: 1rem;
+  border: 0.0625rem solid #e5e7eb;
+  border-radius: 0.75rem;
+  background-color: white;
+}
+
+.panel h3 {
+  margin: 0 0 0.9rem;
+  font-size: 1.125rem;
+}
+
+.panel-content {
+  margin-top: 0.5rem;
+}

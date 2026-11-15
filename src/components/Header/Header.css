@@ -1,22 +1,27 @@
-.pill {
-  background-color: rgb(196, 255, 255);
-  color: rgb(32, 99, 175);
-  border-radius: 15px;
-  padding: 5px;
-}
-.logo {
-  margin: 10px;
-}
-.app-head p {
-  color: rgb(151, 149, 149);
-  margin: 0;
-}
 .app-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
-.nameCafe {
-  display: flex;
-  align-items: baseline;
+
+.logo {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #263e6b;
+}
+
+.app-head p {
+  margin: 0.35rem 0 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.pill {
+  padding: 0.5rem 0.9rem;
+  border-radius: 1rem;
+  background-color: #c4ffff;
+  color: #2063af;
+  font-weight: 600;
 }

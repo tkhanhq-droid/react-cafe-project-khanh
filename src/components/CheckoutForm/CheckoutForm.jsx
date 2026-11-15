@@ -9,7 +9,7 @@ export default function CheckoutForm({
   onSubmit,
 }) {
   return (
-    <form onSubmit={onSubmit}>
+    <form className="checkout-form" onSubmit={onSubmit}>
       <div>
         <label id="customer-name">Customer name</label>
         <input

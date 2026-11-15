@@ -1,7 +1,7 @@
 import "./SuccessMessage.css";
 export default function SuccessMessage({ order, onNewOrder }) {
   return (
-    <div>
+    <div className="success-message">
       <h3>Order placed successfully!</h3>
       <p>Order Id: #{order.id}</p>
       <p>Total: ${order.total.toFixed(2)}</p>

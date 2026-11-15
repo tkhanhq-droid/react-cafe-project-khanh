@@ -1,26 +1,34 @@
 .btn-select {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
+
 .cat {
-  border: 1px solid rgb(189, 185, 185);
-  border-radius: 15px;
+  padding: 0.5rem 0.75rem;
+  border: 0.0625rem solid #bdb9b9;
+  border-radius: 1rem;
   background-color: white;
-  padding: 8px 12px;
+  color: #374151;
   cursor: pointer;
 }
-.cat on {
-  background-color: rgb(63, 81, 131);
+
+.cat.on {
+  background-color: #3f5183;
   color: white;
 }
+
 .search {
   flex: 1;
-  border-radius: 10px;
-  border: 1px solid rgb(189, 185, 185);
-  padding: 10px;
+  padding: 0.55rem 0.75rem;
+  border: 0.0625rem solid #bdb9b9;
+  border-radius: 0.6rem;
 }
+
 .select {
-  border-radius: 10px;
-  padding: 8px 12px;
+  padding: 0.55rem 0.75rem;
+  border: 0.0625rem solid #bdb9b9;
+  border-radius: 0.6rem;
   background-color: white;
 }

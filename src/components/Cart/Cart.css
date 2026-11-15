@@ -1,0 +1,19 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cart-empty {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.cart-clear {
+  padding: 0.5rem 0.75rem;
+  border: 0.0625rem solid #bdb9b9;
+  border-radius: 0.625rem;
+  background-color: #f3f4f6;
+  cursor: pointer;
+}
