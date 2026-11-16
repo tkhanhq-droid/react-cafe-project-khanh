@@ -15,16 +15,36 @@
   text-align: center;
 }
 
-.item-emoji.coffee {
-  background-color: #f4e3d4;
+.item-emoji.item-1 {
+  background-color: #f3dfce;
 }
 
-.item-emoji.tea {
-  background-color: #e3f2dc;
+.item-emoji.item-2 {
+  background-color: #ead9f5;
 }
 
-.item-emoji.bakery {
-  background-color: #fff0ce;
+.item-emoji.item-3 {
+  background-color: #dceaf8;
+}
+
+.item-emoji.item-4 {
+  background-color: #daf0d8;
+}
+
+.item-emoji.item-5 {
+  background-color: #ffe1d8;
+}
+
+.item-emoji.item-6 {
+  background-color: #fff0c7;
+}
+
+.item-emoji.item-7 {
+  background-color: #f9e8b0;
+}
+
+.item-emoji.item-8 {
+  background-color: #e6d5c6;
 }
 
 .item-name {
