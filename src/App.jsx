@@ -35,19 +35,17 @@ export default function App() {
   const [lastOrder, setLastOrder] = useState(null);
   const [showErrors, setShowErrors] = useState(false);
 
-  // Lọc theo danh mục và tìm kiếm
   const filteredItems = Menu.filter((item) => {
     const matchCategory = category === "All" || item.category === category;
 
-    const matchSearch = item.name
-      .toLowerCase()
-      .includes(search.trim().toLowerCase());
+    const matchSearch = item.name //Cappuchino
+      .toLowerCase() //cappuchino.includes("ca")
+      .includes(search.trim().toLowerCase()); //ca
 
     return matchCategory && matchSearch;
   });
 
-  // Sắp xếp theo giá
-  const sortedItems = [...filteredItems];
+  const sortedItems = filteredItems;
 
   if (sort === "low") {
     sortedItems.sort((a, b) => a.price - b.price);
@@ -55,7 +53,6 @@ export default function App() {
     sortedItems.sort((a, b) => b.price - a.price);
   }
 
-  // Tính số lượng và tổng tiền
   const cartCount = cart.reduce(
     (total, product) => total + product.quantity,
     0,
@@ -72,7 +69,6 @@ export default function App() {
 
   const total = subtotal - discount;
 
-  // Thêm sản phẩm vào giỏ
   function handleAddToCart(item) {
     setCart((prevCart) => {
       const exists = prevCart.some((product) => product.id === item.id);
@@ -126,7 +122,6 @@ export default function App() {
     setCart([]);
   }
 
-  // Cập nhật thông tin khách hàng
   function handleCustomerChange(field, value) {
     setCustomer((prevCustomer) => ({
       ...prevCustomer,
@@ -134,7 +129,6 @@ export default function App() {
     }));
   }
 
-  // Cập nhật địa chỉ
   function handleAddressChange(field, value) {
     setCustomer((prevCustomer) => ({
       ...prevCustomer,
@@ -145,7 +139,6 @@ export default function App() {
     }));
   }
 
-  // Kiểm tra thông tin đặt hàng
   const errors = {};
 
   if (!customer.name.trim()) {
@@ -164,7 +157,6 @@ export default function App() {
     errors.city = "City is required";
   }
 
-  // Xử lý đặt hàng
   function handleSubmit(e) {
     e.preventDefault();
     setShowErrors(true);
@@ -177,7 +169,6 @@ export default function App() {
       return;
     }
 
-    // Lưu dữ liệu tại thời điểm nhấn Place Order
     const newOrder = {
       id: orders.length + 1,
       customer: {
@@ -199,7 +190,6 @@ export default function App() {
     }, 2000);
   }
 
-  // Bắt đầu đơn hàng mới
   function handleNewOrder() {
     setCustomer({
       name: "",
@@ -252,20 +242,12 @@ export default function App() {
               onDecrease={handleDecrease}
               onClear={handleClear}
             />
+            <OrderSummary
+              subtotal={subtotal}
+              discount={discount}
+              total={total}
+            />
           </Panel>
-
-          <Panel title="Order Summary">
-            {cart.length > 0 ? (
-              <OrderSummary
-                subtotal={subtotal}
-                discount={discount}
-                total={total}
-              />
-            ) : (
-              <p>Your cart is empty.</p>
-            )}
-          </Panel>
-
           <Panel title="Checkout">
             {status === "idle" && (
               <CheckoutForm

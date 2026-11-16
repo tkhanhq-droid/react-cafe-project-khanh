@@ -34,3 +34,6 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+.checkout-form p {
+  color: red;
+}

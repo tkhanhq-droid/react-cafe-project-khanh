@@ -3,7 +3,6 @@
   margin: 0 auto;
   padding: 1.5rem;
 }
-
 .main-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;

@@ -5,7 +5,11 @@
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
-
+.nameCafe {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 .logo {
   margin: 0;
   font-size: 1.75rem;
