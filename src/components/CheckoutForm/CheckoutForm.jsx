@@ -10,6 +10,7 @@ export default function CheckoutForm({
   onAddressChange,
   onCouponChange,
   onSubmit,
+  validCoupon,
 }) {
   return (
     <form className="checkout-form" onSubmit={onSubmit}>
@@ -71,7 +72,6 @@ export default function CheckoutForm({
           onChange={(e) => onCustomerChange("note", e.target.value)}
         />
       </div>
-
       <div>
         <label htmlFor="customer-coupon">Coupon code</label>
         <input
@@ -81,8 +81,15 @@ export default function CheckoutForm({
           value={coupon}
           onChange={(e) => onCouponChange(e.target.value)}
         />
-      </div>
 
+        {coupon.trim() !== "" && (
+          <p className={validCoupon ? "coupon-valid" : "coupon-invalid"}>
+            {validCoupon
+              ? "Coupon applied! You get 10% off."
+              : "Invalid coupon code."}
+          </p>
+        )}
+      </div>
       <button type="submit" disabled={!canSubmit || status === "sending"}>
         {status === "sending" ? "Placing order..." : "Place Order"}
       </button>

@@ -260,6 +260,7 @@ export default function App() {
                 onAddressChange={handleAddressChange}
                 onCouponChange={setCoupon}
                 onSubmit={handleSubmit}
+                validCoupon={validCoupon}
               />
             )}
 

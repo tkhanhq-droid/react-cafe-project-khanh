@@ -37,3 +37,10 @@
 .checkout-form p {
   color: red;
 }
+.checkout-form .coupon-valid {
+  color: green;
+}
+
+.checkout-form .coupon-invalid {
+  color: red;
+}
